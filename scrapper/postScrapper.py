@@ -11,7 +11,7 @@ def add_post_to_json(title, text, author, link):
         'link': link
     }
     post.update(post)
-    with open('posts.json', 'r+') as file:
+    with open('data/posts.json', 'r+') as file:
         file_data = json.load(file)
         file_data["posts"].append(post)
         file.seek(0)
@@ -32,9 +32,8 @@ def post_scrapper():
             post_author = post.find('a', class_='color-2 affect').text
         except AttributeError:
             continue
-        post_text = post.find('p', class_='text')
         try:
-            post_text = post.find('a').text
+            post_text = post.find('p', class_='text')
         except AttributeError:
             continue
         try:
